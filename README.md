@@ -10,3 +10,8 @@ Approach
 * The whole book is exported with Node export format.
 * The export code can be imported with Node export, but book structure will be lost.
 * Import with this module and the book structure will be recreated.
+
+TODO
+----
+
+* Delete old menu links after importing.
