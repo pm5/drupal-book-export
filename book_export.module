@@ -1,6 +1,7 @@
 <?php
 
 $_book_export_mappings;
+$_book_export_status;
 
 /**
  * Implements hook_menu().
@@ -59,11 +60,16 @@ function _book_export_get_new_mlid($original_mlid)
 function _book_export_init_mappings($nodes)
 {
   global $_book_export_mappings;
+  global $_book_export_status;
 
   $_book_export_mappings = array(
     'uuid' => array(),
     'original_nid' => array(),
     'original_mlid' => array()
+  );
+  $_book_export_status = array(
+    'success nodes' => 0,
+    'success books' => 0
   );
   foreach ($nodes as $node) {
     $_book_export_mappings['uuid'][$node->uuid] = array(
@@ -180,11 +186,16 @@ function book_export_node_export_node_import_alter(&$node, $original_node, $save
 function book_export_node_export_after_import_alter($new_nodes, $used_format, $save)
 {
   global $_book_export_mappings;
+  global $_book_export_status;
 
   foreach ($new_nodes as $node) {
     $_book_export_mappings['uuid'][$node->uuid]['new_nid'] = $node->nid;
     $_book_export_mappings['uuid'][$node->uuid]['new_bid'] = $node->book['bid'];
     $_book_export_mappings['uuid'][$node->uuid]['new_mlid'] = $node->book['mlid'];
+    $_book_export_status['success nodes']++;
+    if ($node->nid === $node->book['bid']) {
+      $_book_export_status['success books']++;
+    }
   }
 }
 

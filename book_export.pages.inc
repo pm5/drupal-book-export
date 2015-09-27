@@ -48,6 +48,8 @@ function book_export_import_form($form, &$form_state) {
 
 function book_export_import_form_submit(&$form, &$form_state)
 {
+  global $_book_export_status;
+
   if ($form_state['values']['file']) {
     $file = unserialize($form_state['values']['file']);
     if (file_exists($file->uri)) {
@@ -65,6 +67,11 @@ function book_export_import_form_submit(&$form, &$form_state)
   }
 
   book_export_import_book(json_decode($code_string));
+
+  drupal_set_message(t('Successfully imported !nodes nodes of !books books.', array(
+    '!nodes' => $_book_export_status['success nodes'],
+    '!books' => $_book_export_status['success books']
+  )));
 }
 
 function book_export_import_form_validate($form, &$form_state)
