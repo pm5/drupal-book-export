@@ -54,6 +54,9 @@ function _book_export_get_new_mlid($original_mlid)
   return $_book_export_mappings['uuid'][$node_uuid]['new_mlid'];
 }
 
+/**
+ * Initialize book and menu ID mapping data structure.
+ */
 function _book_export_init_mappings($nodes)
 {
   global $_book_export_mappings;
@@ -79,6 +82,9 @@ function _book_export_init_mappings($nodes)
   }
 }
 
+/**
+ * Remove old book and menu information.
+ */
 function _book_export_cleanup()
 {
   global $_book_export_mappings;
@@ -97,6 +103,9 @@ function _book_export_cleanup()
   }
 }
 
+/**
+ * Rebuild book and menu structure.
+ */
 function _book_export_rebuild($original_nodes)
 {
   global $_book_export_mappings;
@@ -131,6 +140,9 @@ function _book_export_rebuild($original_nodes)
   }
 }
 
+/**
+ * Import a list of book nodes.
+ */
 function book_export_import_book($nodes)
 {
   global $_book_export_mappings;
@@ -169,6 +181,9 @@ function book_export_import_book($nodes)
   }
 }
 
+/**
+ * Implements hook_node_export_node_import_alter().
+ */
 function book_export_node_export_node_import_alter(&$node, $original_node, $save)
 {
   if ($original_node->book['bid'] === $original_node->nid) {
@@ -180,6 +195,9 @@ function book_export_node_export_node_import_alter(&$node, $original_node, $save
   }
 }
 
+/**
+ * Implements hook_node_export_after_import_alter().
+ */
 function book_export_node_export_after_import_alter($new_nodes, $used_format, $save)
 {
   global $_book_export_mappings;
