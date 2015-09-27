@@ -2,16 +2,13 @@
 Drupal 7.x Book Export
 ======================
 
-I'm tired of unable to nicely export and book created by the Drupal 7.x Book module and then import it fully into another Drupal site.  So I think I can write a module to do that.
+I really need something that works for Book nodes so this is it.
 
-Approach
---------
+* It usesd Node export to import nodes, so that node backups exported by Node export can mostly be imported by this module correctly.
+* It re-creates book hierarchies correctly.
 
-* The whole book is exported with Node export format.
-* The export code can be imported with Node export, but book structure will be lost.
-* Import with this module and the book structure will be recreated.
 
-TODO
-----
+Bugs and TODO
+-------------
 
-* Delete old menu links after importing.
+* Newly-added children not included in the import will become dangling after import.
