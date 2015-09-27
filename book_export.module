@@ -12,17 +12,13 @@ function book_export_menu() {
     'title' => 'Book export: import',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('book_export_import_form'),
-    'access callback' => 'book_export_access_import',
+    // use Node export permission
+    'access callback' => 'node_export_access_import',
     'description' => 'Import book using <em>Book export</em>.',
     'file' => 'book_export.pages.inc',
   );
 
   return $items;
-}
-
-function book_export_access_import($node = NULL)
-{
-    return TRUE;
 }
 
 function _book_export_get_new_nid($original_nid)
