@@ -16,6 +16,7 @@ function book_export_menu() {
     'access callback' => 'node_export_access_import',
     'description' => 'Import book using <em>Book export</em>.',
     'file' => 'book_export.pages.inc',
+    'weight' => 10,
   );
 
   return $items;
