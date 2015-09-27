@@ -11,4 +11,6 @@ I really need something that works for Book nodes so this is it.
 Bugs and TODO
 -------------
 
+* Support import formats other than JSON.
 * Newly-added children not included in the import will become dangling after import.
+* Remove global variables.
